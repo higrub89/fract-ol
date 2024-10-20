@@ -1,0 +1,4 @@
+ESTRUCTURA DEL PROYECTO:
+ --
+
+-- para compilar ejemplos: compilar primero la libreria,  luego estas flags  -Lminilibx-linux -lmlx_Linux -lX11 -lXext -lm

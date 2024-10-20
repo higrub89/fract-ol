@@ -1,14 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.c                                          :+:      :+:    :+:   */
+/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhiguita <rhiguita@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rhiguita <rhiguita@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/03 20:51:20 by rhiguita          #+#    #+#             */
-/*   Updated: 2024/10/20 16:46:01 by rhiguita         ###   ########.fr       */
+/*   Created: 2024/05/06 20:53:33 by rhiguita          #+#    #+#             */
+/*   Updated: 2024/05/06 21:02:46 by rhiguita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
-#include "mat.h"
+#include "libft.h"
+
+void	ft_putendl_fd(char *s, int fd)
+{
+	while (*s)
+	{
+		write(fd, s, 1);
+		s++;
+	}
+	write(fd, "\n", 1);
+}
+/*
+int	main()
+{
+	char	*s = "Ruben dario";
+	ft_putendl_fd(s, 1);
+}*/

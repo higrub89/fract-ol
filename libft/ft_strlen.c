@@ -1,14 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.c                                          :+:      :+:    :+:   */
+/*   ft_strlen.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhiguita <rhiguita@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rhiguita <rhiguita@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/03 20:51:20 by rhiguita          #+#    #+#             */
-/*   Updated: 2024/10/20 16:46:01 by rhiguita         ###   ########.fr       */
+/*   Created: 2024/05/01 21:15:01 by rhiguita          #+#    #+#             */
+/*   Updated: 2024/05/01 23:32:33 by rhiguita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
-#include "mat.h"
+#include "libft.h"
+
+size_t	ft_strlen(const char *s)
+{
+	size_t	i;
+
+	i = 0;
+	while (s[i] != '\0')
+		i++;
+	return (i);
+}

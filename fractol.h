@@ -1,14 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.c                                          :+:      :+:    :+:   */
+/*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhiguita <rhiguita@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rhiguita <rhiguita@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/03 20:51:20 by rhiguita          #+#    #+#             */
-/*   Updated: 2024/10/20 16:46:01 by rhiguita         ###   ########.fr       */
+/*   Created: 2024/10/20 13:58:23 by rhiguita          #+#    #+#             */
+/*   Updated: 2024/10/20 14:01:52 by rhiguita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
-#include "mat.h"
+#ifndef FRACTOL_H
+# define FRACTOL_H
+
+# include <unistd.h>
+# include <math.h>
+# include "./libft/libft.h"
+# include "./minilibx-linux/mlx.h"
+
+..........
+
+#endif

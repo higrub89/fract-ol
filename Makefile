@@ -6,36 +6,48 @@
 #    By: rhiguita <rhiguita@student.42madrid>       +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/14 20:24:19 by rhiguita          #+#    #+#              #
-#    Updated: 2024/10/14 21:41:54 by rhiguita         ###   ########.fr        #
+#    Updated: 2024/10/20 13:56:52 by rhiguita         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = fractol
-CC = gcc
-CFLAGS = -Wall -Werroe -Wextra -g
-LIBFT = ./libft/libft.a
-MLX = ./minilibx-linux/libmlx.a
-SRCS = *.c
-OBJ = ${SRCS:%.c=%.o}
+CC = gcc 
+CFLAGS = -Wall -Werror -Wextra -g
+HEADER = fractol.h
+LIBFT = libft/libft.a
+MINILIBX = minilibx-linux/libmx.a
+LFLAGS = -Lminilibx-linux -lmlx_Linux -Imlx_linux -lx11 -lXext -lm -lz 
+SCR = *.c
+OBJ = $(SRC:.c=.o)
+RM = rm -rf
+GREEN = \033[1;32m
 
-%.o: %.c
-	$(CC) $(CFLAGS) -c $< -o $@
+all : $(NAME)
 
-all: $(NAME)
+$(NAME) : $(LIBFT) $(MINILIBX) $(OBJ)
+		make -C libft
+		make -C minilibx-linux
+		$(CC) $(CFLAGS) $(OBJ) $(LFlAGS) -o $(NAME)
 
-$(MLX):
-	$(MAKE) -C ./minilibx-linux
+		@echo "$(GREEN)Project successfully compiled"
 
-$(NAME): $(OBJ) $(MLX)
-	$(CC) $(CFLAGS) $(OBJ) $(MLX) -o $(NAME) -lXext -lX11 -lm
+$(OBJ): $(LIBFT)
+		$(CC) $(CFLAGS) -C $(SRC)
 
-clean:
-	rm -rf $(OBJ)
+$(LIBFT):
+		make libft
+$(MINILIBX):
+		make minilibx-linux
 
-fclean: clean
-	rm -rf $(NAME)
+clean :
+		$(RM) $(OBJ)
+		@echo "$(GREEN)All object files are deleted"
 
-re:
-	fclean all
+fclean : clean
+		make fclean -C libft
+		$(RM) $(NAME)
+		@echo "$(GREEN)Cleaned everything"
 
-.PHONY: all clean fclean re
+re : fclean all
+
+.PHONY : all clean fclean re

@@ -1,14 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.c                                          :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhiguita <rhiguita@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rhiguita <rhiguita@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/03 20:51:20 by rhiguita          #+#    #+#             */
-/*   Updated: 2024/10/20 16:46:01 by rhiguita         ###   ########.fr       */
+/*   Created: 2024/05/01 21:04:50 by rhiguita          #+#    #+#             */
+/*   Updated: 2024/05/01 21:06:44 by rhiguita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
-#include "mat.h"
+#include "libft.h"
+
+int	ft_isdigit(int c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	else
+		return (0);
+}

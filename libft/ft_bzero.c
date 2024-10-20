@@ -1,14 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.c                                          :+:      :+:    :+:   */
+/*   ft_bzero.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhiguita <rhiguita@student.42.fr>          +#+  +:+       +#+        */
+/*   By: rhiguita <rhiguita@student.42madrid>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/10/03 20:51:20 by rhiguita          #+#    #+#             */
-/*   Updated: 2024/10/20 16:46:01 by rhiguita         ###   ########.fr       */
+/*   Created: 2024/05/01 21:26:20 by rhiguita          #+#    #+#             */
+/*   Updated: 2024/05/01 23:33:11 by rhiguita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "mlx.h"
-#include "mat.h"
+#include "libft.h"
+
+void	ft_bzero(void *s, size_t n)
+{
+	unsigned char	*ptr;
+
+	ptr = s;
+	while (n-- > 0)
+	{
+		*ptr++ = 0;
+	}
+}
