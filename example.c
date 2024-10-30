@@ -6,7 +6,7 @@
 /*   By: rhiguita <rhiguita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/10/20 16:38:53 by rhiguita          #+#    #+#             */
-/*   Updated: 2024/10/20 18:14:04 by rhiguita         ###   ########.fr       */
+/*   Updated: 2024/10/27 18:29:23 by rhiguita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,21 +43,58 @@ typedef struct  s_rect
     int minus;
 }   t_rect;
 
-void    render_background(t_data *data, int color)
+void	render_background(t_data *data, int color)
 {
-    int i;
-    int j;
+    int	i;
+    int	j;
 
     if (data->win_ptr == NULL)
         return ;
     i = 0;
-    while (i > WINDOW_HEIGTH)
+    while (i < 450)
     {
         j = 0;
-        while (j < WINDOW_WIDTH)
+        while (j < 700)
             mlx_pixel_put(data->mlx_ptr, data->win_ptr, j++, i, color);
         ++i;
-    }  
+    }
+}
+
+// void    render_background(t_data *data, int color)
+// {
+//     int i;
+//     int j;
+
+//     if (data->win_ptr == NULL)
+//         return ;
+//     i = 0;
+//     while (i > WINDOW_HEIGTH)
+//     {
+//         j = 0;
+//         while (j < WINDOW_WIDTH)
+//             mlx_pixel_put(data->mlx_ptr, data->win_ptr, j++, i, 0x1A1A40);
+//         ++i;
+//     }  
+// }
+
+int render_background2(t_data *data, t_rect rect)
+{
+    int i;
+    int j;
+    printf("hola");
+    if (data->win_ptr == NULL)
+        return (1);
+    i = 10;
+    while (i < WINDOW_HEIGTH + 300)
+    {
+        j = 10;
+        while (j < WINDOW_WIDTH + 300)
+        {
+             mlx_pixel_put(data->mlx_ptr, data->win_ptr, j++, i, rect.color);
+        }
+        ++i;
+    }
+    return (0);
 }
 
 int render_rectangule(t_data *data, t_rect rect)
@@ -70,7 +107,7 @@ int render_rectangule(t_data *data, t_rect rect)
     i = rect.y;
     while (i < rect.y + rect.height)
     {
-        j = rect.x;
+        j = rect.x;data->win_ptr, j++, i, rect.color;
         while (j < rect.x + rect.width * 2)
         {
              mlx_pixel_put(data->mlx_ptr, data->win_ptr, j++, i, rect.color);
@@ -82,7 +119,8 @@ int render_rectangule(t_data *data, t_rect rect)
 
 int render(t_data *data, int size, int i, int j)
 {
-    render_background(data, ORANGE_PIXEL);
+    render_background(data, 0xFAAFFDD);
+    //render_background2(data, (t_rect){WINDOW_WIDTH -100, WINDOW_HEIGTH -100, 200, 200, 0x1A1A40});
     render_rectangule(data, (t_rect){WINDOW_WIDTH -100, WINDOW_HEIGTH -100, 200, 200, YELLOW_PIXEL});
     return (0);
 }
@@ -98,4 +136,26 @@ int main()
 
     render(&data, 0, 0, 0);
     mlx_loop(mlx);
+}
+
+int	handle_keypress(int keysym, struct s_windows *fract)
+{
+	if (keysym == XK_Escape)
+		close_handler(fract);
+	if (keysym == XK_Left)
+		fract->move_x += 0.05 * (1 / fract->zoom);
+	if (keysym == XK_Up)
+		fract->move_y -= 0.05 * (1 / fract->zoom);
+	if (keysym == XK_Right)
+		fract->move_x -= 0.05 * (1 / fract->zoom);
+	if (keysym == XK_Down)
+		fract->move_y += 0.05 * (1 / fract->zoom);
+	if (keysym == 65451)
+		fract->iterations += 1;
+	if (keysym == 65453)
+		fract->iterations -= 1;
+	printf("Keypress: %i\n", keysym);
+	printf("zoom: %f\n", fract->zoom);
+	render(fract);
+	return (0);
 }

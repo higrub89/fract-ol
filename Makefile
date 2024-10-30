@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: rhiguita <rhiguita@student.42madrid>       +#+  +:+       +#+         #
+#    By: rhiguita <rhiguita@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/14 20:24:19 by rhiguita          #+#    #+#              #
-#    Updated: 2024/10/20 13:56:52 by rhiguita         ###   ########.fr        #
+#    Updated: 2024/10/27 19:29:31 by rhiguita         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,9 +15,9 @@ CC = gcc
 CFLAGS = -Wall -Werror -Wextra -g
 HEADER = fractol.h
 LIBFT = libft/libft.a
-MINILIBX = minilibx-linux/libmx.a
+MINILIBX = minilibx-linux/libmlx.a
 LFLAGS = -Lminilibx-linux -lmlx_Linux -Imlx_linux -lx11 -lXext -lm -lz 
-SCR = *.c
+SCR = ren_img julia main Setings_window
 OBJ = $(SRC:.c=.o)
 RM = rm -rf
 GREEN = \033[1;32m
@@ -27,7 +27,7 @@ all : $(NAME)
 $(NAME) : $(LIBFT) $(MINILIBX) $(OBJ)
 		make -C libft
 		make -C minilibx-linux
-		$(CC) $(CFLAGS) $(OBJ) $(LFlAGS) -o $(NAME)
+		$(CC) $(CFLAGS) $(LFlAGS) -o $(NAME) $(OBJ) $(LIBFT) $(MINILIBX)
 
 		@echo "$(GREEN)Project successfully compiled"
 

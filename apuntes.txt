@@ -1,1 +1,15 @@
 Conjuntos de: Julia y Mandelbrot
+--para compilar ejemplocompilar primero la libreria,  
+luego estas flags : -Lminilibx-linux -lmlx_Linux -lX11 -lXext -lm
+
+-Estructuras:
+
+-funciones de minilibx
+
+-fuciones para manejar la ventana
+
+-colores, pintarlas con el mismo codigo
+
+-render de las figuras de los fractales
+
+-
