@@ -6,7 +6,7 @@
 #    By: rhiguita <rhiguita@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/14 20:24:19 by rhiguita          #+#    #+#              #
-#    Updated: 2024/10/27 19:29:31 by rhiguita         ###   ########.fr        #
+#    Updated: 2024/11/17 02:44:35 by rhiguita         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,8 +16,8 @@ CFLAGS = -Wall -Werror -Wextra -g
 HEADER = fractol.h
 LIBFT = libft/libft.a
 MINILIBX = minilibx-linux/libmlx.a
-LFLAGS = -Lminilibx-linux -lmlx_Linux -Imlx_linux -lx11 -lXext -lm -lz 
-SCR = ren_img julia main Setings_window
+LFLAGS = -Lminilibx-linux -lmlx_Linux -Imlx_linux  -lXext -lm -lz 
+SCR = main.c
 OBJ = $(SRC:.c=.o)
 RM = rm -rf
 GREEN = \033[1;32m
@@ -27,17 +27,17 @@ all : $(NAME)
 $(NAME) : $(LIBFT) $(MINILIBX) $(OBJ)
 		make -C libft
 		make -C minilibx-linux
-		$(CC) $(CFLAGS) $(LFlAGS) -o $(NAME) $(OBJ) $(LIBFT) $(MINILIBX)
+		$(CC) $(CFLAGS) $(LFLAGS) -o $(NAME) $(OBJ) $(LIBFT) $(MINILIBX) -lXext -lm
 
 		@echo "$(GREEN)Project successfully compiled"
 
-$(OBJ): $(LIBFT)
-		$(CC) $(CFLAGS) -C $(SRC)
+%.o: %.c
+	$(CC) $(CFLAGS) -c $< -o $@
 
 $(LIBFT):
 		make libft
 $(MINILIBX):
-		make minilibx-linux
+		 minilibx-linux && make
 
 clean :
 		$(RM) $(OBJ)
