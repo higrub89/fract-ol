@@ -6,7 +6,7 @@
 /*   By: rhiguita <rhiguita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 02:52:11 by rhiguita          #+#    #+#             */
-/*   Updated: 2024/11/24 13:13:39 by rhiguita         ###   ########.fr       */
+/*   Updated: 2024/11/24 16:30:25 by rhiguita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@
 # define NEON_PINK 0xFF1493
 # define BRIGHT_CYAN 0x00FFFF
 # define CRIMSON_RED 0xDC143C
-/*
 # define DEEP_VIOLET 0x8A2BE2
 # define LIME 0xBFFF00
 # define ELECTRIC_TURQUOISE 0x30D5C8
@@ -55,7 +54,6 @@
 # define ELECTRIC_YELLOW 0xEEDD82
 # define HOT_PINK 0xFF69B4
 # define NEON_EMERALD 0x50C878
-*/
 
 typedef struct s_complex
 {

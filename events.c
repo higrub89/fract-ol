@@ -50,11 +50,16 @@ int mouse_handler(int button, int x, int y, t_data *data)
 
 int julia(int x, int y, t_data *data)
 {
-	if (!ft_strncmp(data->name, "julia", 5))
-	{
-		data->jul_x = (scale(x, -2, +2, 0, WINDOW_WIDTH) * data->zoom) + data->change_x;
-		data->jul_y = (scale(y, +2, -2, 0, WINDOW_HEIGTH) * data->zoom) + data->change_y;
-		fractal_render(data);
-	}
-	return 0;
+	double	new_jul_x;
+	double	new_jul_y;
+	
+	new_jul_x = (scale(x, -2, +2, 0, WINDOW_WIDTH) * data->zoom);
+	new_jul_y = (scale(y, -2, +2, 0, WINDOW_HEIGTH) * data->zoom);
+	if (new_jul_x == data->jul_x && new_jul_y == data->jul_y)
+		return (0);
+	data->jul_x = new_jul_x;
+	data->jul_y = new_jul_y;
+
+	fractal_render(data);
+	return (0);
 }
