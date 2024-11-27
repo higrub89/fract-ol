@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   events.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: rhiguita <rhiguita@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2024/11/27 21:08:31 by rhiguita          #+#    #+#             */
+/*   Updated: 2024/11/27 22:03:26 by rhiguita         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "fractol.h"
 
 int close_handler(t_data *data)
@@ -33,6 +45,8 @@ int key_handler(int keysym, t_data *data)
 
 int mouse_handler(int button, int x, int y, t_data *data)
 {
+	(void)x;
+	(void)y;
 	//Zoom in
 	if (button == Button5)
 	{
@@ -50,16 +64,11 @@ int mouse_handler(int button, int x, int y, t_data *data)
 
 int julia(int x, int y, t_data *data)
 {
-	double	new_jul_x;
-	double	new_jul_y;
-	
-	new_jul_x = (scale(x, -2, +2, 0, WINDOW_WIDTH) * data->zoom);
-	new_jul_y = (scale(y, -2, +2, 0, WINDOW_HEIGTH) * data->zoom);
-	if (new_jul_x == data->jul_x && new_jul_y == data->jul_y)
-		return (0);
-	data->jul_x = new_jul_x;
-	data->jul_y = new_jul_y;
-
-	fractal_render(data);
-	return (0);
+	if (!ft_strncmp(data->name, "julia", 5))
+	{
+		data->jul_x = (scale(x, -2, +2, 0, WINDOW_WIDTH) * data->zoom) + data->change_x;
+		data->jul_y = (scale(y, +2, -2, 0, WINDOW_HEIGTH) * data->zoom) + data->change_y;
+		fractal_render(data);
+	}
+	return 0;
 }

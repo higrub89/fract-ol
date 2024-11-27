@@ -6,7 +6,7 @@
 #    By: rhiguita <rhiguita@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/10/14 20:24:19 by rhiguita          #+#    #+#              #
-#    Updated: 2024/11/17 02:44:35 by rhiguita         ###   ########.fr        #
+#    Updated: 2024/11/27 22:18:25 by rhiguita         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -14,40 +14,38 @@ NAME = fractol
 CC = gcc 
 CFLAGS = -Wall -Werror -Wextra -g
 HEADER = fractol.h
-LIBFT = libft/libft.a
 MINILIBX = minilibx-linux/libmlx.a
-LFLAGS = -Lminilibx-linux -lmlx_Linux -Imlx_linux  -lXext -lm -lz 
-SCR = main.c
+LFLAGS = -Lminilibx-linux -lmlx_Linux -Imlx_linux -lX11 -lXext -lm -lz 
+SRC = events.c init.c math.c render.c utils.c main.c
 OBJ = $(SRC:.c=.o)
 RM = rm -rf
 GREEN = \033[1;32m
-
-all : $(NAME)
-
-$(NAME) : $(LIBFT) $(MINILIBX) $(OBJ)
-		make -C libft
-		make -C minilibx-linux
-		$(CC) $(CFLAGS) $(LFLAGS) -o $(NAME) $(OBJ) $(LIBFT) $(MINILIBX) -lXext -lm
-
-		@echo "$(GREEN)Project successfully compiled"
-
 %.o: %.c
+	@echo "$(GREEN)Compiling $<..."
 	$(CC) $(CFLAGS) -c $< -o $@
 
-$(LIBFT):
-		make libft
+all: $(NAME)
+
+$(NAME) : $(OBJ) $(Makefile)
+		@echo "$(GREEN)Compiling MINILIBX ..."
+		make -C minilibx-linux
+		@echo "$(GREEN)Compiling $(NAME)..."
+		$(CC) $(CFLAGS) $(LFLAGS) $(OBJ) $(MINILIBX) -o $(NAME) -lX11 -lXext -lm 
+		@echo "$(GREEN)Project successfully compiled"
+
 $(MINILIBX):
 		 minilibx-linux && make
 
-clean :
+clean:
+		@echo "$(GREEN) Cleaning Files objets..."
 		$(RM) $(OBJ)
 		@echo "$(GREEN)All object files are deleted"
 
-fclean : clean
-		make fclean -C libft
+fclean: clean
+		@echo "$(GREEN) Removing $(NAME)..."
 		$(RM) $(NAME)
 		@echo "$(GREEN)Cleaned everything"
 
-re : fclean all
+re: fclean all
 
-.PHONY : all clean fclean re
+.PHONY: all clean fclean re
