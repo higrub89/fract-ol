@@ -22,8 +22,10 @@ static void	my_pixel_put(int x, int y, t_img *img, int color)
 
 int	get_color_itera(int i, int max_iter)
 {
-	t_scale	scale_iter  = {0, max_iter, BLACK, WHITE};
-	return (int)map(i, &scale_iter);
+	t_scale	scale_iter;
+
+	scale_iter = (t_scale){0, max_iter, BLACK, NEON_YELLOW};
+	return ((int)map(i, &scale_iter));
 }
 
 static void	mandelbrot_or_julia(t_complex *Z, t_complex *C, t_data *data)
@@ -47,23 +49,15 @@ static void	handle_pixel(int x, int y, t_data *data)
 	int			i;
 	int			color;
 
-	// Definir el escalado para x e y
-	t_scale scale_x = {0, WIDTH, -2, 2};  // Escalar x de 0 a width a [-2, 2]
-	t_scale scale_y = {0, HEIGTH, 2, -2}; // Escalar y de 0 a height a [2, -2]
 	i = 0;
-	// Escalar las coordenadas de x e y
-	z.x = map(x, &scale_x) * data->zoom + data->change_x;
-	z.y = map(y, &scale_y) * data->zoom + data->change_y;
-	// Llamar a la función para determinar el conjunto Mandelbrot o Julia
+	z.x = map(x, &(t_scale){0, WIDTH, -2, 2}) * data->zoom + data->change_x;
+	z.y = map(y, &(t_scale){0, HEIGTH, 2, -2}) * data->zoom + data->change_y;
 	mandelbrot_or_julia(&z, &c, data);
-	// Iteración para verificar si el punto escapa del conjunto
 	while (i < data->itera)
 	{
 		z = sum_complex(square_complex(z), c);
-		// Verificar si el valor escapa (es mayor que 4)
 		if ((z.x * z.x) + (z.y * z.y) > data->escape_value)
 		{
-			// Obtener el color usando la función get_color_itera
 			color = get_color_itera(i, data->itera);
 			my_pixel_put(x, y, &data->img, color);
 			return ;
@@ -78,7 +72,6 @@ void	fractal_render(t_data *data)
 	int	x;
 	int	y;
 
-	// Iterar sobre cada píxel de la imagen
 	y = -1;
 	while (++y < HEIGTH)
 	{
@@ -88,6 +81,5 @@ void	fractal_render(t_data *data)
 			handle_pixel(x, y, data);
 		}
 	}
-	// Mostrar la imagen renderizada en la ventana
 	mlx_put_image_to_window(data->mlx, data->win, data->img.img_ptr, 0, 0);
 }

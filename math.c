@@ -6,21 +6,11 @@
 /*   By: rhiguita <rhiguita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 01:36:26 by rhiguita          #+#    #+#             */
-/*   Updated: 2024/12/14 20:31:50 by rhiguita         ###   ########.fr       */
+/*   Updated: 2024/12/18 20:14:13 by rhiguita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
-
-// Solution scaled = (0,799) -> (-2,+2);
-/*
-double	scale(double unscaled_num, double new_min, double new_max,
-		double old_min, double old_max)
-{
-	return ((new_max - new_min) * (unscaled_num - old_min) / (old_max - old_min)
-		+ new_min);
-}
-*/
 
 double	map(double num, t_scale *scale)
 {
@@ -28,7 +18,6 @@ double	map(double num, t_scale *scale)
 		/ (scale->old_max - scale->old_min) + scale->new_min);
 }
 
-// SUM complex;
 t_complex	sum_complex(t_complex Z1, t_complex Z2)
 {
 	t_complex	result;
@@ -38,12 +27,9 @@ t_complex	sum_complex(t_complex Z1, t_complex Z2)
 	return (result);
 }
 
-// square comlex;
-// real = (R² - I²)
-// Imaginarry = 2*R*I
 t_complex	square_complex(t_complex Z)
 {
-	t_complex result;
+	t_complex	result;
 
 	result.x = (Z.x * Z.x) - (Z.y * Z.y);
 	result.y = 2 * Z.x * Z.y;

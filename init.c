@@ -20,7 +20,7 @@ static void	malloc_error(void)
 
 static void	data_init(t_data *data)
 {
-	data->escape_value = 4; // 2² my hypotenuse;
+	data->escape_value = 4;
 	data->itera = 50;
 	data->change_x = 0.285;
 	data->change_y = 0.01;
@@ -35,12 +35,7 @@ static void	events_init(t_data *data)
 		data);
 	mlx_hook(data->win, MotionNotify, PointerMotionMask, julia, data);
 }
-/*
-INIT
--mlx
--listening events
--hooks data
-*/
+
 void	fractal_init(t_data *data)
 {
 	data->mlx = mlx_init();

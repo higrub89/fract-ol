@@ -12,31 +12,6 @@
 
 #include "fractol.h"
 
-/*
-int	ft_strncmp(char *s1, char *s2, size_t n)
-{
-	if (NULL == s1  || NULL == s2 || n <= 0)
-		return (0);
-	while (*s1 == *s2 && n > 0 && *s1 != '\0')
-	{
-		++s1;
-		++s2;
-		--n;
-	}
-	return (*s1 - *s2);
-}
-
-void	ft_putstr_fd(char *s, int fd)
-{
-	if (NULL == s || fd < 0)
-		return ;
-	while (*s != '\0')
-	{
-		write(fd, s, 1);
-		ft_putstr_fd(s + 1, fd);
-	}
-}
-*/
 double	atodbl(char *s)
 {
 	long	integer_part;
@@ -63,4 +38,30 @@ double	atodbl(char *s)
 		fractional_part = fractional_part + (*s++ - 48) * pow;
 	}
 	return ((integer_part + fractional_part) * sign);
+}
+
+void	validate_julia_coordinates(double x, double y)
+{
+	if (x < -2.0 || x > 2.0 || y < -2.0 || y > 2.0)
+	{
+		ft_putstr_fd("INVALID COORDINATES\n", STDERR_FILENO);
+		exit(EXIT_FAILURE);
+	}
+}
+
+void	handle_julia(int argc, char **argv, t_data *data)
+{
+	if (argc != 4 || ft_strncmp(argv[1], "julia", 5))
+		return ;
+	data->name = argv[1];
+	data->jul_x = atodbl(argv[2]);
+	data->jul_y = atodbl(argv[3]);
+	validate_julia_coordinates(data->jul_x, data->jul_y);
+}
+
+void	handle_mandelbrot(int argc, char **argv, t_data *data)
+{
+	if (argc != 2 || ft_strncmp(argv[1], "mandelbrot", 10))
+		return ;
+	data->name = argv[1];
 }

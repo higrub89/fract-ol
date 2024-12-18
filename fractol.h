@@ -54,8 +54,8 @@
 
 typedef struct s_complex
 {
-	double x; // real part;
-	double y; // Imaginary part;
+	double	x; // real part;
+	double	y; // Imaginary part;
 }			t_complex;
 
 typedef struct s_scale
@@ -93,18 +93,15 @@ typedef struct s_data
 t_complex	sum_complex(t_complex Z1, t_complex Z2);
 t_complex	square_complex(t_complex Z);
 void		fractal_init(t_data *data);
-// render..
 void		fractal_render(t_data *data);
-// math..
 double		map(double num, t_scale *scale);
-// hook events..
 int			key_handler(int keysym, t_data *data);
-// clean_up
 int			close_handler(t_data *data);
 int			mouse_handler(int button, int x, int y, t_data *data);
 int			julia(int x, int y, t_data *data);
 double		atodbl(char *s);
-int			valid_number(char *s);
-void		validate_and_render(int argc, char **argv, t_data *data);
+void		validate_julia_coordinates(double x, double y);
+void		handle_julia(int argc, char **argv, t_data *data);
+void		handle_mandelbrot(int argc, char **argv, t_data *data);
 
 #endif
