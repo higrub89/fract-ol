@@ -13,15 +13,15 @@
 #ifndef FRACTOL_H
 # define FRACTOL_H
 
-# include <unistd.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <math.h>
 # include "libft/libft.h"
 # include "minilibx-linux/mlx.h"
-# include <X11/keysym.h>
 # include <X11/X.h>
-# define ERROR_MESSAGE "ERROR ARGUMENTS\n"
+# include <X11/keysym.h>
+# include <math.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <unistd.h>
+# define ERROR_MESSAGE "ERROR ARGUMENT\n"
 # define WIDTH 800
 # define HEIGTH 800
 // COLORS
@@ -54,9 +54,9 @@
 
 typedef struct s_complex
 {
-	double	x; // real part;
-	double	y; // Imaginary part;
-}	t_complex;
+	double x; // real part;
+	double y; // Imaginary part;
+}			t_complex;
 
 typedef struct s_scale
 {
@@ -64,7 +64,7 @@ typedef struct s_scale
 	double	old_max;
 	double	new_min;
 	double	new_max;
-}	t_scale;
+}			t_scale;
 
 typedef struct s_img
 {
@@ -73,7 +73,7 @@ typedef struct s_img
 	int		bpp;
 	int		endian;
 	int		line_len;
-}	t_img;
+}			t_img;
 
 typedef struct s_data
 {
@@ -88,16 +88,16 @@ typedef struct s_data
 	double	change_y;
 	double	jul_x;
 	double	jul_y;
-}	t_data;
+}			t_data;
 
-t_complex	sum_complex(t_complex Z1,	t_complex Z2);
+t_complex	sum_complex(t_complex Z1, t_complex Z2);
 t_complex	square_complex(t_complex Z);
 void		fractal_init(t_data *data);
-//render..
+// render..
 void		fractal_render(t_data *data);
-//math..
+// math..
 double		map(double num, t_scale *scale);
-//hook events..
+// hook events..
 int			key_handler(int keysym, t_data *data);
 // clean_up
 int			close_handler(t_data *data);

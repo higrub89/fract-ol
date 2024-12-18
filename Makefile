@@ -17,7 +17,7 @@ HEADER = ./include/fractol.h
 LIBFT = libft/libft.a
 MINILIBX = minilibx-linux/libmlx.a
 LFLAGS = -Lminilibx-linux -lmlx_Linux -Imlx_linux -lX11 -lXext -lm -lz 
-SRC = 	
+SRC = 	events.c init.c math.c render.c utils.c main.c
 OBJ = $(SRC:.c=.o)
 RM = rm -rf
 GREEN = \033[1;32m

@@ -22,7 +22,7 @@ static void	my_pixel_put(int x, int y, t_img *img, int color)
 
 int	get_color_itera(int i, int max_iter)
 {
-	t_scale	scale_iter = {0, max_iter, BLACK, WHITE};
+	t_scale	scale_iter  = {0, max_iter, BLACK, WHITE};
 	return (int)map(i, &scale_iter);
 }
 

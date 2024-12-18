@@ -12,6 +12,7 @@
 
 #include "fractol.h"
 
+/*
 int	ft_strncmp(char *s1, char *s2, size_t n)
 {
 	if (NULL == s1  || NULL == s2 || n <= 0)
@@ -35,7 +36,7 @@ void	ft_putstr_fd(char *s, int fd)
 		ft_putstr_fd(s + 1, fd);
 	}
 }
-
+*/
 double	atodbl(char *s)
 {
 	long	integer_part;
