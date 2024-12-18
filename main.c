@@ -6,7 +6,7 @@
 /*   By: rhiguita <rhiguita@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/17 01:40:02 by rhiguita          #+#    #+#             */
-/*   Updated: 2024/11/27 22:20:54 by rhiguita         ###   ########.fr       */
+/*   Updated: 2024/12/15 13:23:46 by rhiguita         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,11 @@ int	main(int argc, char **argv)
 {
     t_data  data;
         
-    if (2 == argc || !ft_strncmp(argv[1], "mandelbrot", 10)
-        || 4 == argc || !ft_strncmp(argv[1], "julia", 5))
+    if (2 == argc && !ft_strncmp(argv[1], "mandelbrot", 10))
+    {
+        data.name = argv[1];
+    }
+    else if (4 == argc && !ft_strncmp(argv[1], "julia", 5))   
     {
         data.name = argv[1];
         if (!ft_strncmp(data.name, "julia", 5))
@@ -34,5 +37,5 @@ int	main(int argc, char **argv)
         ft_putstr_fd(ERROR_MESSAGE, STDERR_FILENO);
         exit(EXIT_FAILURE);
     }  
-        
+
 }

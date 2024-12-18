@@ -47,14 +47,14 @@ double	atodbl(char *s)
 	fractional_part = 0;
 	sign = +1;
 	pow = 1;
-	while ((*s >=  9 && *s <= 13) || 32 == *s)
+	while ((*s >= 9 && *s <= 13) || 32 == *s)
 		++s;
 	while ('+' == *s || '-' == *s)
 		if ('-' == *s++)
 			sign = -sign;
-	while (*s != '-' && *s)
+	while (*s != '.' && *s)
 		integer_part = (integer_part * 10) + (*s++ - 48);
-	if ('-' == *s)
+	if ('.' == *s)
 		++s;
 	while (*s)
 	{
